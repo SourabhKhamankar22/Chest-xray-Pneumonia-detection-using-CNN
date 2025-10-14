@@ -1,5 +1,10 @@
 # 🩺 Chest X-ray Pneumonia Detection using CNN
-
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Framework](https://img.shields.io/badge/Framework-TensorFlow-red)
+![Keras](https://img.shields.io/badge/Library-Keras-orange)
+![OpenCV](https://img.shields.io/badge/Library-OpenCV-lightgrey)
+![Dataset](https://img.shields.io/badge/Dataset-Chest--Xray-blueviolet)
 ## 🧠 Overview
 This project uses **Convolutional Neural Networks (CNN)** to detect **Pneumonia** from **Chest X-ray images**.  
 By leveraging deep learning, the model classifies X-ray images as **Normal** or **Pneumonia**, providing an efficient tool to assist medical diagnosis — especially in areas with limited radiology resources.
@@ -195,9 +200,6 @@ jupyter notebook pneumonia_detection.ipynb
   - **TensorFlow & Keras Documentation**
   - **Related research on Pneumonia detection using deep learning**
 
-## 📝 License
-
-  This project is released under the MIT License
 
 ## Author: [Sourabh Khamankar](https://github.com/SourabhKhamankar22)
 
