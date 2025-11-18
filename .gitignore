@@ -1,0 +1,23 @@
+# Ignore dataset (very important)
+chest_xray_dataset/
+
+# Ignore model weights
+models/*.h5
+models/*.keras
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore virtual environments
+.venv/
+env/
+venv/
+
+# Ignore OS junk files
+.DS_Store
+._*
+Thumbs.db
+
+# Ignore VS Code settings (optional)
+.vscode/
