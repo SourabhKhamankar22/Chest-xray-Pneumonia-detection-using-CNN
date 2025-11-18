@@ -5,6 +5,7 @@
 ![Keras](https://img.shields.io/badge/Library-Keras-orange)
 ![OpenCV](https://img.shields.io/badge/Library-OpenCV-lightgrey)
 ![Dataset](https://img.shields.io/badge/Dataset-Chest--Xray-blueviolet)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_STREAMLIT_APP_URL_HERE)
 ## 🧠 Overview
 This project uses **Convolutional Neural Networks (CNN)** to detect **Pneumonia** from **Chest X-ray images**.  
 By leveraging deep learning, the model classifies X-ray images as **Normal** or **Pneumonia**, providing an efficient tool to assist medical diagnosis — especially in areas with limited radiology resources.
@@ -17,13 +18,12 @@ By leveraging deep learning, the model classifies X-ray images as **Normal** or 
 - [Approach](#approach)
 - [Model Architecture](#model-architecture)
 - [Evaluation Metrics](#evaluation-metrics)
-- [Requirements](#requirements)
 - [How to Run](#how-to-run)
 - [Results](#results)
+- [Try the Live Demo](#try-the-live-demo)
 - [Folder Structure](#folder-structure)
 - [Future Improvements](#future-improvements)
 - [References](#references)
-- [License](#license)
 
 ---
 
@@ -37,17 +37,27 @@ By leveraging deep learning, the model classifies X-ray images as **Normal** or 
 - **Source:** [Chest X-Ray Images (Pneumonia) - Kaggle Dataset](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
 
 - **Structure:**
-```bash
-data/
-├── train/
-│   ├── NORMAL/
-│   └── PNEUMONIA/
-├── val/
-│   ├── NORMAL/
-│   └── PNEUMONIA/
-└── test/
-    ├── NORMAL/
-    └── PNEUMONIA/
+```
+├── chest_xray_dataset/
+│   └── chest_xray/
+│   │   ├── test/
+│   │   │   ├── NORMAL/
+│   │   │   └── PNEUMONIA/
+│   │   ├── train/
+│   │   │   ├── NORMAL/
+│   │   │   └── PNEUMONIA/
+│   │   └── val/
+│   │       ├── NORMAL/
+│   │       └── PNEUMONIA/
+│   │──── test/
+│   │      ├── NORMAL/
+│   │      └── PNEUMONIA/
+│   ├──── train/
+│   │     ├── NORMAL/
+│   │     └── PNEUMONIA/
+│   └──── val/
+│         ├── NORMAL/
+│         └── PNEUMONIA/
 ```
 - **Total Images:**
   - Train: 5,216 (Normal: 1,341, Pneumonia: 3,875)
@@ -55,19 +65,21 @@ data/
   - Test: 624 (Normal: 234, Pneumonia: 390)
 
 - **Preprocessing:**
-  - Images resized to 150×150 pixels  
-  - Pixel normalization (rescale = 1/255)  
-  - Data augmentation (rotation, flip, zoom)
+  - Images resized to 150×150 pixels     
+  - Pixel normalization (rescale = 1/255)     
+  - Data augmentation (rotation, flip, zoom)   
+  - Note: The training notebook dynamically applies a 10% validation_split to the original training data to create a larger, more robust validation set (~521 images).
 
 
 ---
 
 ## ⚙️ Approach
 1. **Data Preprocessing:** Using Keras `ImageDataGenerator` for augmentation and normalization.  
-2. **Model Design:** Built a CNN from scratch using TensorFlow/Keras.  
-3. **Training:** Tuned hyperparameters for optimal accuracy without overfitting.  
-4. **Evaluation:** Used metrics such as accuracy, precision, recall, and F1-score.  
-5. **Visualization:** Plotted accuracy/loss curves and confusion matrix for analysis.
+2. **Class Balancing:** Utilized class weights in the model fit function to counter the dataset imbalance.
+3. **Model Design:** Built a CNN from scratch using TensorFlow/Keras.  
+4. **Training:** Tuned hyperparameters for optimal accuracy without overfitting.  
+5. **Evaluation:** Used metrics such as accuracy, precision, recall, and F1-score.  
+6. **Visualization:** Plotted accuracy/loss curves and confusion matrix for analysis.
 
 ---
 
@@ -92,7 +104,7 @@ data/
 
 **Loss Function:** Binary Crossentropy  
 **Optimizer:** Adam  
-**Learning Rate:** 0.001  
+**Learning Rate:** 5*10^-5(0.00005)  
 **Epochs:** 20  
 **Batch Size:** 32  
 **Total Parameters:** 4,829,377  
@@ -111,39 +123,39 @@ data/
 
 ---
 
-## 🧰 Requirements
-
-Create a virtual environment and install the dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-Example requirements.txt:
-```
-tensorflow
-numpy
-pandas
-matplotlib
-seaborn
-scikit-learn
-opencv-python
-```
-
 ## ▶️ How to Run
-
-1. **Clone the repository**
-```
+1. **⚙️ Initial Setup & Environment Creation**
+- **Clone the repository**
+```bash
 git clone https://github.com/SourabhKhamankar22/Chest-xray-Pneumonia-detection-using-CNN.git
 cd Chest-xray-Pneumonia-detection-using-CNN
 ```
-2. **Place the dataset:**
- Download the dataset from Kaggle and extract it into the data/ folder as shown above.
-
-3. **Run the notebook**
+- **Create the Environment**
+ Use the provided environment.yml to build the compatible stack (Python 3.9, TF 2.10, locked NumPy).
+```bash
+conda env create -f environment.yml
 ```
+- **Activate the Environment:** You must run all subsequent commands within this activated environment.
+```bash
+conda activate tf-gpu
+```
+
+2. **📂 Data Preparation & Training**
+- **Place the Dataset:** Download [Chest X-Ray Images (Pneumonia) - Kaggle Dataset](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia) and ensure the main data folder (chest_xray_dataset/chest_xray/) is placed inside your cloned repository.
+
+- **Train the Model:** Run the notebook to generate the model weights and verify GPU connectivity.
+```bash
 jupyter notebook pneumonia_detection.ipynb
 ```
-   or open it directly in Google Colab.
+***(Run all cells to generate models/pneumonia_model.h5.)***
+
+3. **🚀 Launch the Application**
+Once the model is trained, launch the interactive demo:
+- Launch Streamlit:
+```bash
+streamlit run app.py
+```
+***(The application will open automatically in your web browser.)***
 
 4. **Steps performed in the notebook:**
 
@@ -155,15 +167,16 @@ jupyter notebook pneumonia_detection.ipynb
 
 ## 📊 Results
 
-- Achieved **93% validation accuracy** and **89% test accuracy**
+- Achieved **91.36% validation accuracy** and **89.26% test accuracy**
 - Model generalizes well on unseen test images
 - **Classification Report on Test Set:**
-  - **NORMAL:** Precision 0.92 | Recall 0.74 | F1-score 0.82 | Support 234  
-  - **PNEUMONIA:** Precision 0.86 | Recall 0.96 | F1-score 0.91 | Support 390  
-- **Overall Metrics:** Accuracy 0.88 | Precision 0.88 | Recall 0.90 | F1-score 0.89
+  - **NORMAL:** Precision 0.88 | Recall 0.81 | F1-score 0.84 | Support 234  
+  - **PNEUMONIA:** Precision 0.89 | Recall 0.93 | F1-score 0.91 | Support 390  
+- **Overall Metrics:** Accuracy 0.88 | Precision 0.88 | Recall 0.88 | F1-score 0.88
 - **Confusion Matrix & ROC Curve** demonstrate strong discriminative ability
 - Training and validation curves show stable convergence with minimal overfitting
 
+## 🌐 **Try the Live Demo:** [Chest X-ray Pneumonia Detector](YOUR_STREAMLIT_APP_URL_HERE)
  
 ## 🖼 Visualizations
 - **Accuracy & Loss Curves:**  
@@ -174,16 +187,34 @@ jupyter notebook pneumonia_detection.ipynb
   ![Sample Predictions](images/sample_prediction.png)
 
 ## 🗂 Folder Structure
-```
-├── data/
-│   ├── train/
-│   ├── val/
-│   └── test/
+```bash
+├── chest_xray_dataset/
+│   └── chest_xray/
+│   │   ├── test/
+│   │   │   ├── NORMAL/
+│   │   │   └── PNEUMONIA/
+│   │   ├── train/
+│   │   │   ├── NORMAL/
+│   │   │   └── PNEUMONIA/
+│   │   └── val/
+│   │       ├── NORMAL/
+│   │       └── PNEUMONIA/
+│   │──── test/
+│   │      ├── NORMAL/
+│   │      └── PNEUMONIA/
+│   ├──── train/
+│   │     ├── NORMAL/
+│   │     └── PNEUMONIA/
+│   └──── val/
+│         ├── NORMAL/
+│         └── PNEUMONIA/
+├── images/
 ├── models/
 │   └── pneumonia_model.h5
-├── pneumonia_detection.ipynb
-├── requirements.txt
-└── README.md
+├── .gitignore
+├── app.py
+├── environment.yml
+└── pneumonia_detection.ipynb
 ```
 
 ## 🚀 Future Improvements
