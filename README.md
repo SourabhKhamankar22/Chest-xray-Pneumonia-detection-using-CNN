@@ -167,12 +167,12 @@ streamlit run app.py
 
 ## 📊 Results
 
-- Achieved **91.36% validation accuracy** and **89.26% test accuracy**
+- Achieved **91% validation accuracy** and **89.26% test accuracy**
 - Model generalizes well on unseen test images
 - **Classification Report on Test Set:**
-  - **NORMAL:** Precision 0.88 | Recall 0.81 | F1-score 0.84 | Support 234  
-  - **PNEUMONIA:** Precision 0.89 | Recall 0.93 | F1-score 0.91 | Support 390  
-- **Overall Metrics:** Accuracy 0.88 | Precision 0.88 | Recall 0.88 | F1-score 0.88
+  - **NORMAL:** Precision 0.87 | Recall 0.84 | F1-score 0.85 | Support 234  
+  - **PNEUMONIA:** Precision 0.90 | Recall 0.93 | F1-score 0.92 | Support 390  
+- **Overall Metrics:** Accuracy 0.89 | Precision 0.89 | Recall 0.88 | F1-score 0.88
 - **Confusion Matrix & ROC Curve** demonstrate strong discriminative ability
 - Training and validation curves show stable convergence with minimal overfitting
 

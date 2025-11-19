@@ -2,10 +2,6 @@
 chest_xray_dataset/
 data/
 
-# Models and large outputs
-models/
-
-
 # Ignore Python cache
 __pycache__/
 *.pyc
