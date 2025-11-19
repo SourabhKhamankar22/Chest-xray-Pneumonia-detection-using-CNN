@@ -5,7 +5,7 @@
 ![Keras](https://img.shields.io/badge/Library-Keras-orange)
 ![OpenCV](https://img.shields.io/badge/Library-OpenCV-lightgrey)
 ![Dataset](https://img.shields.io/badge/Dataset-Chest--Xray-blueviolet)
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_STREAMLIT_APP_URL_HERE)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chest-xray-pneumonia-detection-using-cnn-hk6gyy5rpzyfaamfpknu4.streamlit.app/)
 ## 🧠 Overview
 This project uses **Convolutional Neural Networks (CNN)** to detect **Pneumonia** from **Chest X-ray images**.  
 By leveraging deep learning, the model classifies X-ray images as **Normal** or **Pneumonia**, providing an efficient tool to assist medical diagnosis — especially in areas with limited radiology resources.
@@ -176,7 +176,7 @@ streamlit run app.py
 - **Confusion Matrix & ROC Curve** demonstrate strong discriminative ability
 - Training and validation curves show stable convergence with minimal overfitting
 
-## 🌐 **Try the Live Demo:** [Chest X-ray Pneumonia Detector](YOUR_STREAMLIT_APP_URL_HERE)
+## 🌐 **Try the Live Demo:** [Chest X-ray Pneumonia Detector](https://chest-xray-pneumonia-detection-using-cnn-hk6gyy5rpzyfaamfpknu4.streamlit.app/)
  
 ## 🖼 Visualizations
 - **Accuracy & Loss Curves:**  
@@ -219,11 +219,11 @@ streamlit run app.py
 
 ## 🚀 Future Improvements
 
-  - **Implement Transfer Learning (e.g., ResNet50, DenseNet, EfficientNet)**
-  - **Use cross-validation to improve robustness**
-  - **Add Grad-CAM visualization for model interpretability**
-  - **Deploy model as a web app (using Streamlit or Flask)**
-  - **Train with larger and more diverse datasets**
+- **Implement Transfer Learning:** Experiment with pre-trained models like **ResNet50, DenseNet121, or EfficientNet** to potentially improve accuracy beyond 90%.
+- **Cross-Validation:** Implement K-Fold cross-validation to ensure the model's performance is consistent across different data subsets.
+- **Expand Dataset:** Train with larger, multi-source datasets (e.g., NIH Chest X-ray dataset) to improve generalization to real-world clinical data.
+- **Dockerization:** Containerize the application using Docker for easier deployment across different platforms.
+- **REST API:** Expose the model via a FastAPI or Flask backend to allow integration with other medical software systems.
 
 ## 📚 References
 
